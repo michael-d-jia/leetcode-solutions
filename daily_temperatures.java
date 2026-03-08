@@ -1,8 +1,11 @@
+import java.util.Stack;
 /*
  * Problem: Daily Temperatures
  * Topic: Monotonic Stack
  * Description:
- * Given an array of integers temperatures represents the daily temperatures, return an array answer such that answer[i] is the number of days you have to wait after the ith day to get a warmer temperature. If there is no future day for which this is possible, keep answer[i] == 0 instead.
+ * Given an array of integers temperatures represents the daily temperatures, 
+ * return an array answer such that answer[i] is the number of days you have to wait after the ith day to get a warmer temperature. 
+ * If there is no future day for which this is possible, keep answer[i] == 0 instead.
  *
  *  
  * Example 1:
@@ -26,7 +29,17 @@ class Solution {
     public int[] dailyTemperatures(int[] temperatures) {
         // Placeholder return statement
         // The actual solution logic will go here.
-        return new int[temperatures.length];
+        int[] results = new int[temperatures.length];
+        Stack<Integer> stack = new Stack<>();
+
+        for (int i = 0; i < temperatures.length; i++) {
+            while(!stack.isEmpty() && temperatures[stack.peek()] < temperatures[i]) {
+                int idx = stack.pop();
+                results[idx] = i - idx;
+            }
+            stack.push(i);
+        }
+        return results;
     }
 
     public static void main(String[] args) {

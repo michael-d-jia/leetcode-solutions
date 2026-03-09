@@ -56,7 +56,19 @@ class Solution {
      */
     public TreeNode invertTree(TreeNode root) {
         // Placeholder return statement
-        return null;
+        if (root == null) {
+            return null;
+        }
+
+        TreeNode temp = root.right;
+        root.right = root.left;
+        root.left = temp;
+
+
+        invertTree(root.right);
+        invertTree(root.left);
+        
+        return root;
     }
 
     // Helper method to build a tree from an array representation (level-order)

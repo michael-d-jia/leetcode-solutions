@@ -46,7 +46,16 @@ public class Solution {
      */
     public ListNode reverseList(ListNode head) {
         // Placeholder return statement
-        return null;
+        // T: O(n) S: O(1)
+        ListNode prev = null;
+        ListNode curr = head;
+        while (curr != null) {
+            ListNode next = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = next;
+        }
+        return prev;
     }
 
     // Definition for singly-linked list.

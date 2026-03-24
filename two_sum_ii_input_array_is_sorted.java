@@ -53,7 +53,30 @@ class Solution {
     public int[] twoSum(int[] numbers, int target) {
         // Placeholder return statement.
         // Implement your solution here.
-        return null;
+        // 2 pointers
+        // left pointer starts at index 0
+        // right pointer starts at the end of the numbers array
+        // add the values at the pointers and compare to target
+        // if it is too big, subtract 1 from right pointer
+        // if it is too small, add 1 to left pointer
+        // loop this while left is less than right
+
+        int left = 0;
+        int right = numbers.length - 1;
+
+        while (left < right) {
+            if (numbers[right] + numbers[left] > target) {
+                right--;
+            } else if (numbers[right] + numbers[left] < target) {
+                left++;
+            } else {
+                return new int[] {left + 1, right + 1};
+            }
+        }
+
+
+
+        return new int[2];
     }
 
     public static void main(String[] args) {

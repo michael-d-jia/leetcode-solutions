@@ -17,6 +17,7 @@ public class Solution {
      *
      *
      * Input: nums = [-1,0,1,2,-1,-4]
+     * Input: nums = [-1,0,2,-1,1,-4]
      * Output: [[-1,-1,2],[-1,0,1]]
      * Explanation:
      * nums[0] + nums[1] + nums[2] = (-1) + 0 + 1 = 0.
@@ -50,7 +51,46 @@ public class Solution {
      */
     public List<List<Integer>> threeSum(int[] nums) {
         // Placeholder return statement
-        return new ArrayList<>();
+        // sort the numbers
+        // loop through the array of nums, stop 2 before the end of nums, so nums.length - 3
+        // check if current i value is equal to i - 1 value and i > 0
+        // set left equal to i + 1 and right to arrays.length - 1
+        // next create a while loop while left < right
+        // check if values equal 0, if not add or subtract depending on greater than or less than 0
+        // else append i, left and right to a list, and append the list to the list of list of integers
+        // return the result list
+        Arrays.sort(nums);
+        List<List<Integer>> result = new ArrayList<>();
+
+        for (int i = 0; i < nums.length - 2; i++) {
+            if (i > 0 && nums[i] == nums[i - 1]) {
+                continue;
+            }
+            int left = i + 1;
+            int right = nums.length - 1;
+            while (left < right) {
+                if (nums[i] + nums[left] + nums[right] > 0) {
+                    right--;
+                } else if (nums[i] + nums[left] + nums[right] < 0) {
+                    left++;
+                } else {
+                    List<Integer> solution = new ArrayList<>();
+                    solution.add(nums[i]);
+                    solution.add(nums[left]);
+                    solution.add(nums[right]);
+                    result.add(solution);
+                    right--;
+                    left++;
+                    while (left < right && nums[left] == nums[left - 1]) {
+                        left++;
+                    }
+                    while (left < right && nums[right] == nums[right + 1]) {
+                        right--;
+                    }
+                }
+            }
+        }
+        return result;
     }
 
     public static void main(String[] args) {

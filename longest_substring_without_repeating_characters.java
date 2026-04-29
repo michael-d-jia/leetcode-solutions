@@ -1,5 +1,4 @@
 import java.util.HashSet;
-import java.util.Set;
 
 /**
  * Problem: Longest Substring Without Repeating Characters
@@ -41,7 +40,6 @@ import java.util.Set;
  */
 class Solution {
     public int lengthOfLongestSubstring(String s) {
-        // TODO: Implement the solution here.
         // Placeholder return statement
         // sliding window problem
         // implement left and right pointers

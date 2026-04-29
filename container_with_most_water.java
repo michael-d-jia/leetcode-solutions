@@ -37,8 +37,23 @@ class Solution {
      * 	0 <= height[i] <= 104
      */
     public int maxArea(int[] height) {
-        // Placeholder return statement
-        return 0;
+        // two pointers
+        // start left at idx 0
+        // start right at idx height.length - 1
+        // calculate area with min(height[left], height[right]) * right - left
+        // if right is less than left decrement right by 1
+        int right = height.length - 1;
+        int left = 0;
+        int maxArea = 0;
+        while(left < right) {
+            maxArea = Math.max(maxArea, Math.min(height[right], height[left]) * (right - left));
+            if (height[right] < height[left]) {
+                right -= 1;
+            } else {
+                left += 1;
+            }
+        }
+        return maxArea;
     }
 
     public static void main(String[] args) {

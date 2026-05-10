@@ -49,8 +49,20 @@ class Solution {
      * 	-104 <= subRoot.val <= 104
      */
     public boolean isSubtree(TreeNode root, TreeNode subRoot) {
-        // Placeholder return statement
-        return false;
+        if (root == null) {
+            return false;
+        }
+        return (isSameTree(root, subRoot) || isSubtree(root.right, subRoot) || isSubtree(root.left, subRoot));
+    }
+    public boolean isSameTree(TreeNode root, TreeNode subRoot) {
+        if (root == null && subRoot == null) {
+            return true;
+        } else if (root == null || subRoot == null) {
+            return false;
+        }
+
+        return (root.val == subRoot.val && isSameTree(root.right, subRoot.right) && isSameTree(root.left, subRoot.left));
+
     }
 
     // Helper method to build a TreeNode from an array representation (level-order)

@@ -28,10 +28,18 @@ import java.util.Collections; // Potentially useful for min/max heaps
  */
 class Solution {
     public int findKthLargest(int[] nums, int k) {
-        // TODO: Implement the solution here.
-        // This is a placeholder return statement.
-        // Replace it with your actual logic.
-        return 0;
+        // Time Complexity: O(n log(k))
+        // Space Complexity: O(n) where n = k
+        PriorityQueue<Integer> minHeap = new PriorityQueue<>();
+        for (int i = 0; i < nums.length; i++) {
+            if(minHeap.size() < k || minHeap.peek() < nums[i]) {
+                minHeap.add(nums[i]);
+                if (minHeap.size() > k) {
+                    minHeap.remove();
+                }
+            }
+        }
+        return minHeap.peek();
     }
 
     public static void main(String[] args) {

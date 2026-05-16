@@ -1,7 +1,8 @@
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Objects; // For Objects.equals in test cases
+import java.util.Objects; 
+import java.util.PriorityQueue;
 
 // Definition for singly-linked list.
 class ListNode {
@@ -63,8 +64,22 @@ class Solution {
      * 	The sum of lists[i].length will not exceed 104.
      */
     public ListNode mergeKLists(ListNode[] lists) {
-        // Placeholder return statement
-        return null;
+        ListNode head = new ListNode(0);
+        ListNode point = head;
+        PriorityQueue<ListNode> minHeap = new PriorityQueue<>((a,b) -> a.val - b.val);
+        for (ListNode node : lists) {
+            if (node != null) {
+                minHeap.add(node);
+            }
+        }
+        while (!minHeap.isEmpty()) {
+            point.next = minHeap.poll();
+            point = point.next;
+            if (point.next != null) {
+                minHeap.add(point.next);
+            }
+        }
+        return head.next;
     }
 
     // Helper method to create a linked list from an array

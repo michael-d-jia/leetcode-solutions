@@ -52,9 +52,18 @@ class Solution {
      * 	-231 <= Node.val <= 231 - 1
      */
     public boolean isValidBST(TreeNode root) {
-        // TODO: Implement the solution here.
-        // Placeholder return statement
-        return false;
+        return isValid(root, null, null);
+    }
+    public boolean isValid(TreeNode root, Integer min, Integer max) {
+        if (root == null) {
+            return true;
+        }
+        if (min != null && root.val <= min) {
+            return false;
+        } else if (max != null && root.val >= max) {
+            return false;
+        }
+        return isValid(root.left, min, root.val) && isValid(root.right, root.val, max);
     }
 
     /**

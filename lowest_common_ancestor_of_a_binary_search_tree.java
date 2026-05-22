@@ -62,8 +62,17 @@ class Solution {
      * 	p and q will exist in the BST.
      */
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
-        // Placeholder return statement
-        return null;
+        if (root == null) {
+            return root;
+        }
+        if (root.val < p.val && root.val < q.val) {
+            return lowestCommonAncestor(root.right, p, q);
+        }
+        else if (root.val > p.val && root.val > q.val) {
+            return lowestCommonAncestor(root.left, p, q);
+        } else {
+            return root;
+        }
     }
 
     // Helper method to build a TreeNode from an array representation (level order)

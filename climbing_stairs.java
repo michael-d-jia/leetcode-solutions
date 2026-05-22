@@ -1,5 +1,3 @@
-import java.util.*;
-
 /**
  * Problem: Climbing Stairs
  * Topic: DP
